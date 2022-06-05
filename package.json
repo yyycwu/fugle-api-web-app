@@ -1,0 +1,15 @@
+{
+    "name": "fugle-api-web-app",
+    "version": "0.0.1",
+    "license": "GPL-3.0+",
+    "description": "No description",
+    "repository": {},
+    "readme": "README.md",
+    "scripts": {
+        "start": "tsc"
+    },
+    "devDependencies": {
+        "@pixi/events": "^6.4.2",
+        "pixi.js": "^6.4.2"
+    }
+}

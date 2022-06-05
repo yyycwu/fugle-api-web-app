@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Quote App</title>
+	<meta charset="utf-8">
+</head>
+
+<body spellcheck="false">
+	<div id="mainDiv">
+		<div id="gridDiv">
+			<div>&nbsp;</div>
+			<div>商品</div>
+			<div>連次</div>
+			<div>連量</div>
+			<div>單量</div>
+			<div></div>
+			<div>
+				<div>震幅</div>
+				<div>最低</div>
+				<div>委買價</div>
+				<div>成交價</div>
+				<div>委賣價</div>
+				<div>最高</div>
+
+				<div>漲跌幅</div>
+				<div>跌停</div>
+				<div>委買量</div>
+				<div>成交量</div>
+				<div>委賣量</div>
+				<div>漲停</div>
+			</div>
+			<div></div>
+		</div>
+		<div>
+			<input id="symbolIdInput">
+			<button id="addButton">+</button>
+		</div>
+	</div>
+	<template id="quoteRowTemplate">
+		<div contenteditable="plaintext-only">072759</div>
+		<div></div>
+		<div>0</div>
+		<div>0</div>
+		<div>0</div>
+		<div>
+			<div>買賣現沖</div>
+			<div>TSE</div>
+			<div>一般股票</div>
+			<div>金融保險</div>
+			<div>盤下空</div>
+			<div>下市</div>
+			<div>暫停交易</div>
+			<div>注意股</div>
+			<div>異常推介股</div>
+			<div>試搓</div>
+			<div>瞬間價格穩定</div>
+			<div>緩跌試搓</div>
+			<div>緩漲試搓</div>
+			<div>延後開盤</div>
+			<div>延收</div>
+			<div>暫停交易</div>
+			<div>收盤</div>
+			<div>連線中斷</div>
+			<div>
+				<div>⬍</div>
+				<div>🞫</div>
+			</div>
+		</div>
+		<div>
+			<div>10%</div>
+			<div>0.91</div>
+			<div>0.95</div>
+			<div>0.96</div>
+			<div>0.97</div>
+			<div>0.98</div>
+			<div>0.99</div>
+			<div>1.00</div>
+			<div>1.01</div>
+			<div>1.02</div>
+			<div>1.03</div>
+			<div>1.04</div>
+			<div>1.05</div>
+			<div>1.09</div>
+
+			<div>0%</div>
+			<div>0.90</div>
+			<div>50000</div>
+			<div>4000</div>
+			<div>300</div>
+			<div>20</div>
+			<div>1</div>
+			<div>1</div>
+			<div>1</div>
+			<div>20</div>
+			<div>300</div>
+			<div>4000</div>
+			<div>50000</div>
+			<div>1.10</div>
+		</div>
+		<div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</template>
+	<style>
+		body {
+			background-color: black;
+			color: #ccc;
+		}
+
+		#mainDiv {
+			display: inline-block;
+		}
+
+		#gridDiv {
+			align-items: baseline;
+			display: inline-grid;
+			font-family: sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			grid-template-columns: max-content max-content repeat(3, 1fr);
+			justify-items: right;
+			min-width: 600px;
+		}
+
+		#gridDiv>div:nth-child(2) {
+			justify-self: center;
+		}
+
+		#gridDiv>div:nth-child(6) {
+			display: none;
+		}
+
+		#gridDiv>div:nth-child(8n+6) {
+			grid-column: 1/6;
+		}
+
+		#gridDiv>div:nth-child(8n+7) {
+			box-sizing: border-box;
+			column-gap: 4px;
+			display: grid;
+			grid-column: 1/6;
+			grid-template-columns: repeat(14, 1fr);
+			padding: 0 0 2px 4px;
+			justify-items: center;
+			width: 100%;
+		}
+
+		#gridDiv>div:nth-child(7) {
+			box-sizing: border-box;
+			grid-template-columns: max-content max-content 2fr max-content 2fr max-content;
+			width: 100%;
+		}
+
+		#gridDiv>div:nth-child(7)>div:nth-child(6),
+		#gridDiv>div:nth-child(7)>div:nth-child(2) {
+			color: #d4d4d4;
+		}
+
+		#gridDiv>div:nth-child(8n) {
+			color: #888;
+			column-gap: 2px;
+			display: grid;
+			font-size: 12px;
+			font-weight: normal;
+			grid-template-columns: repeat(14, 1fr);
+			grid-column: 1/6;
+			text-align: center;
+			white-space: pre;
+			width: 100%;
+		}
+
+		#gridDiv>div:nth-child(8n+9) {
+			justify-self: start;
+			padding: 1px 4px 0;
+		}
+
+		#gridDiv>div:nth-child(8n+9):focus {
+			outline-color: dodgerblue;
+		}
+
+		#gridDiv>div:nth-child(7)>div:nth-child(8),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(16) {
+			color: lightgreen;
+		}
+
+		#gridDiv>div:nth-child(7)>div:nth-child(12),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(28) {
+			color: sandybrown;
+		}
+
+		#gridDiv>div:nth-child(7)>div:nth-child(-n+6),
+		#gridDiv>div:nth-child(8n+15)>div:is(:nth-child(1), :nth-child(2), :nth-child(14)) {
+			color: #d0d0d0;
+		}
+
+		#gridDiv>div:nth-child(7)>div:nth-child(n+7),
+		#gridDiv>div:nth-child(8n+7)>div:nth-child(n+15) {
+			font-size: 12px;
+		}
+
+		#gridDiv>div:nth-child(8n+14) {
+			color: #999;
+			font-size: 12px;
+			justify-self: start;
+			line-height: 1;
+			padding: 1px 0 2px 4px;
+			width: 100%;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div {
+			display: inline-block;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div[hidden] {
+			display: none;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:nth-child(1) {
+			color: #ccc;
+			font-size: 13px;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:nth-child(5) {
+			color: #888;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:nth-child(n+6) {
+			color: #ddd;
+			font-size: 13px;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:nth-child(n+10):nth-child(-n+13),
+		#gridDiv>div:nth-child(8n+14)>div:nth-child(n+16):nth-child(-n+18) {
+			color: gold;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:nth-child(14),
+		#gridDiv>div:nth-child(8n+14)>div:nth-child(15) {
+			color: #eee;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:last-child {
+			float: right;
+			opacity: 0.6;
+			padding-right: 4px;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:last-child:hover {
+			cursor: default;
+			opacity: 0.9;
+		}
+
+		#gridDiv>div:nth-child(8n+14)>div:last-child>div {
+			display: inline-block;
+		}
+
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(3),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(13) {
+			color: #ababab;
+		}
+
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(4),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(12) {
+			color: #afafaf;
+		}
+
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(5),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(11) {
+			color: #b3b3b3;
+		}
+
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(6),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(10) {
+			color: #b7b7b7;
+		}
+
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(7),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(9) {
+			color: #bbb;
+		}
+
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(8) {
+			color: #ddd;
+		}
+
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(n+17):nth-child(-n+21),
+		#gridDiv>div:nth-child(8n+15)>div:nth-child(n+23):nth-child(-n+27) {
+			color: #bbb;
+			font-weight: normal;
+		}
+
+		#mainDiv>div:last-child {
+			margin-top: 2px;
+			text-align: right;
+		}
+
+		#symbolIdInput {
+			background-color: transparent;
+			border: 1px solid dimgrey;
+			color: darkgrey;
+			font-weight: bold;
+			text-align: center;
+			width: 60px;
+		}
+
+		#addButton {
+			font-size: 15px;
+			line-height: 1;
+			padding: 0px 4px;
+			vertical-align: bottom;
+		}
+	</style>
+	<script src="../../out/quoteApp/quoteApp.js" type="module"></script>
+</body>
+
+</html>

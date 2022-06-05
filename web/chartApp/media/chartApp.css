@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+#mainDiv>canvas {
+    display: block;
+    user-select: none;
+}
+
+#symbolIdInput {
+    width: 80px;
+}

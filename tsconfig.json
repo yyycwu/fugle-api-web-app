@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "allowUnreachableCode": false,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "target": "ES2022",
+        "outDir": "out"
+    },
+    "include": [
+        "src"
+    ]
+}
